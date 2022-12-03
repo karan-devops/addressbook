@@ -6,14 +6,14 @@ pipeline {
     }
     stages {
         stage('Compile') {
-            agent any
+            agent {label 'linux_prac_slave-1'}
             steps {
                 echo 'compiling the code'
                 sh 'mvn compile'
             }
         }
         stage('Test'){
-            agent {label 'linux_prac_slave-1'}
+            agent any
             steps {
                 script {
                     echo 'testing the code'
