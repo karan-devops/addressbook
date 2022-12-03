@@ -1,9 +1,17 @@
 pipeline {
-    agent any
     stages {
-        stage('Build') {
+        agent any
+        stage('Compile') {
             steps {
-                echo 'Job successfully built'
+                echo 'compiling the code'
+                sh 'mvn compile'
+            }
+        }
+        stage('Test'){
+            agent slave1
+            steps {
+                echo 'testing the code'
+                sh 'mvn test'
             }
         }
     }
