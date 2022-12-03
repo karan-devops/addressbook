@@ -1,9 +1,9 @@
 pipeline {
     agent none
-    tools {
-        jdk 'myjava'
-        maven 'mymaven'
-    }
+    // tools {
+    //     jdk 'myjava'
+    //     maven 'mymaven'
+    // }
     stages {
         stage('Compile') {
             agent any
@@ -15,8 +15,10 @@ pipeline {
         stage('Test'){
             agent {label 'linux_prac_slave-1'}
             steps {
-                echo 'testing the code'
-                sh 'mvn test'
+                script {
+                    echo 'testing the code'
+                    sh 'mvn test'
+                }
             }
             post{
                 always{
@@ -27,8 +29,10 @@ pipeline {
         stage('Package'){
             agent any
             steps {
-                echo "packaging the code"
-                sh 'mvn package'
+                script {
+                    echo "packaging the code"
+                    sh 'mvn package'
+                }
             }
         }
     }
