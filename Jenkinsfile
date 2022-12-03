@@ -27,7 +27,7 @@ pipeline {
             }
         }
         stage('Package'){
-            agent any
+            agent {label 'linux_prac_slave-1'}
             steps {
                 script {
                     echo "packaging the code"
