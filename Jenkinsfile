@@ -9,7 +9,7 @@ pipeline {
             }
         }
         stage('Test'){
-            agent linux_prac_slave-1
+            agent slave1
             steps {
                 echo 'testing the code'
                 sh 'mvn test'
