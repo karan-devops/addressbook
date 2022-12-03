@@ -27,11 +27,14 @@ pipeline {
             }
         }
         stage('Package'){
-            agent {label 'linux_prac_slave-1'}
+            agent any
             steps {
                 script {
-                    echo "packaging the code"
-                    sh 'mvn package'
+                    sshagent(['ssh-key']) {
+                        echo "packaging the code"
+                        sh 'mvn package'
+                    }
+                    
                 }
             }
         }
